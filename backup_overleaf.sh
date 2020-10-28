@@ -46,6 +46,6 @@ projectIds=$(echo $projectIds | tr " " ",")
 # Download the zip
 code=$(curl "https://www.overleaf.com/project/download/zip?project_ids=$projectIds" --compressed -H "$cookie" -w "%{http_code}" --output $outputTmpDirectory)
 
-if [[ "$code" -eq 200 ]] ; then
+if [ "$code" -eq 200 ] ; then
 	cp $outputTmpDirectory $outputDirectory
 fi
