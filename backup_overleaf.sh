@@ -10,6 +10,11 @@ import re
 # pip install mechanize
 from mechanize import Browser
 
+# To get the backup directly from the official Overleaf
+cookie_name = "overleaf_session2"
+# To get the backup from a private Overleaf server
+#cookie_name = "sharelatex.sid"
+
 login = "login"
 password = "password"
 
@@ -25,13 +30,14 @@ br.submit()
 cookies = br._ua_handlers['_cookies'].cookiejar
 # convert cookies into a dict usable by requests
 cookie_dict = {}
+cookie = cookie_name
 for c in cookies:
-	if c.name == "sharelatex.sid":
-		print(c.value)
+	if c.name == cookie_name:
+		cookie += "=" + c.value
 	cookie_dict[c.name] = c.value
-#print(cookie_dict)
+print(cookie)
 EOF`
-cookie="Cookie: sharelatex.sid="$cookie
+cookie="Cookie: "$cookie
 
 # Get the list of projects
 IN=`curl 'https://www.overleaf.com/project' --compressed -H "$cookie" | grep "application/json"`
