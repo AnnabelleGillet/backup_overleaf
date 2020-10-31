@@ -7,4 +7,5 @@ It first log in to Overleaf with the python module, then gets the cookie and use
 
 Some parameters can be adapted in the script:
 - The directory where to download the zip, at line 3
-- The login and password of the user, at lines 13 and 14
+- The login and password of the user, at lines 18 and 19
+- If the Overleaf server is a private one, comment the line 14 and uncomment the line 16
